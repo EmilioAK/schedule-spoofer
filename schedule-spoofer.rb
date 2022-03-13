@@ -34,7 +34,7 @@ def make_workday(date, start_time, end_time)
   work_hours = make_work_hours(start_time, end_time)
 
   work_hours.each_with_object([]) do |work_hour, acc|
-    previous_title = acc&.at(-1)&.at(0)
+    previous_title = acc.dig(-1, 0)
     work_date = "#{date} #{convert_time(work_hour[:start_time])}"
     acc << [make_task_title(previous_title), work_hour[:duration], work_date]
   end
